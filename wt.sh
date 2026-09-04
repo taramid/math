@@ -40,8 +40,10 @@ TASK_FILE="${TASKS_DIR}/${TIMESTAMP}-${SLUG}.md"
 
 if [ ! -f "$TASK_FILE" ]; then
     echo "==> Creating task file: $TASK_FILE"
-    cat << 'TASK' > "$TASK_FILE"
+    cat << TASK > "$TASK_FILE"
 # Task for AI Agent
+
+**Task File Path:** \`$TASK_FILE\`
 
 ## Context
 take into account AGENTS.md
@@ -50,9 +52,19 @@ take into account AGENTS.md
 ## To-Do
 ...
 
-## Note
-you're welcome to make small, atomic commits for each logical change with clean messages
-...
+## Working Protocol & Logging Rules
+- You may make small, atomic commits for code changes as you work.
+- **Iterative Task Flow:** This task may require multiple iterations (initial execution, user feedback, adjustments, bugfixes).
+- **Mandatory Reporting:** After completing EACH iteration or addressing new feedback, you MUST append a new entry at the VERY BOTTOM of this file (\`$TASK_FILE\`), under the \`## Interaction Log\` section.
+- **DO NOT overwrite** existing logs or user instructions. Always append sequentially at the end.
+- **Entry Format Requirement:**
+  ### [YYYY-MM-DD HH:MM] Agent Report (Iteration N)
+  - **Summary:** Executive summary of changes made in this iteration.
+  - **Files Modified/Created:** List of updated or created files.
+  - **Notes / Caveats:** Recommendations, observations, or potential caveats.
+- **Final Step per Iteration:** Commit this updated task file along with your changes
+
+## Interaction Log
 
 TASK
 fi
