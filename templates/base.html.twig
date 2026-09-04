@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{{ 'app.title'|trans }}{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
         {% endblock %}
@@ -24,11 +24,11 @@
             <div class="mx-auto flex h-12 max-w-5xl items-center justify-between px-4">
                 <a href="#" class="flex items-center gap-2 font-semibold">
                     <span class="grid size-6 place-items-center rounded-md bg-slate-900 text-xs font-bold text-white">M</span>
-                    <span class="hidden sm:inline">MathLayout</span>
+                    <span class="hidden sm:inline">{{ 'app.name'|trans }}</span>
                 </a>
                 <nav class="flex items-center gap-2">
-                    <a href="#" class="rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">About</a>
-                    <a href="#" class="rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700">Sign in</a>
+                    <a href="#" class="rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900">{{ 'nav.about'|trans }}</a>
+                    <a href="#" class="rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700">{{ 'nav.sign_in'|trans }}</a>
                 </nav>
             </div>
         </header>
@@ -40,7 +40,7 @@
         <footer class="border-t border-slate-200 bg-white">
             <div class="mx-auto flex h-12 max-w-5xl items-center justify-between px-4 text-xs text-slate-500">
                 <span>&copy; {{ "now"|date("Y") }} MathLayout</span>
-                <span>Symfony &amp; Tailwind</span>
+                <span>{{ 'footer.tagline'|trans }}</span>
             </div>
         </footer>
     </body>

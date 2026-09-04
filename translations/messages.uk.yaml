@@ -1,0 +1,10 @@
+app:
+    name: MathLayout
+    title: Вітаємо!
+
+nav:
+    about: Про нас
+    sign_in: Увійти
+
+footer:
+    tagline: Symfony та Tailwind

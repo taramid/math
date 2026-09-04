@@ -1,0 +1,10 @@
+app:
+    name: MathLayout
+    title: 'Welcome!'
+
+nav:
+    about: About
+    sign_in: Sign in
+
+footer:
+    tagline: Symfony and Tailwind
