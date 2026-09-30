@@ -22,7 +22,7 @@ class Question
     private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Topic $topic = null;
 
     /**

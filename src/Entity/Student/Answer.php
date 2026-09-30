@@ -20,7 +20,7 @@ class Answer
     private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'answers')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Run $run = null;
 
     public function __construct()

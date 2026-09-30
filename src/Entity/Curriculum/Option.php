@@ -20,7 +20,7 @@ class Option
     private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'options')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Question $question = null;
 
     public function __construct()
