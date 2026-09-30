@@ -19,7 +19,7 @@ class Question
     private ?string $text = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     #[ORM\JoinColumn(nullable: false)]
@@ -33,6 +33,7 @@ class Question
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
         $this->options = new ArrayCollection();
     }
 
@@ -53,16 +54,9 @@ class Question
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     public function getTopic(): ?Topic

@@ -17,7 +17,7 @@ class Run
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private \DateTimeImmutable $createdAt;
 
     // todo: Student or Guest (whatever)
 
@@ -33,6 +33,7 @@ class Run
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
         $this->answers = new ArrayCollection();
     }
 
@@ -41,16 +42,9 @@ class Run
         return $this->id;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     public function getTopic(): ?Topic

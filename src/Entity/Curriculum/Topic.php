@@ -20,7 +20,7 @@ class Topic
     private ?string $title = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private \DateTimeImmutable $createdAt;
 
     /**
      * @var Collection<int, Question>
@@ -36,6 +36,7 @@ class Topic
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
         $this->questions = new ArrayCollection();
         $this->runs = new ArrayCollection();
     }
@@ -57,16 +58,9 @@ class Topic
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     /**
