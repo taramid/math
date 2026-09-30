@@ -2,6 +2,7 @@
 
 namespace App\Entity\Curriculum;
 
+use App\Entity\Student\Run;
 use App\Repository\Curriculum\TopicRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -27,9 +28,16 @@ class Topic
     #[ORM\OneToMany(targetEntity: Question::class, mappedBy: 'topic')]
     private Collection $questions;
 
+    /**
+     * @var Collection<int, Run>
+     */
+    #[ORM\OneToMany(targetEntity: Run::class, mappedBy: 'topic')]
+    private Collection $runs;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->runs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -85,6 +93,36 @@ class Topic
             // set the owning side to null (unless already changed)
             if ($question->getTopic() === $this) {
                 $question->setTopic(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Run>
+     */
+    public function getRuns(): Collection
+    {
+        return $this->runs;
+    }
+
+    public function addRun(Run $run): static
+    {
+        if (!$this->runs->contains($run)) {
+            $this->runs->add($run);
+            $run->setTopic($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRun(Run $run): static
+    {
+        if ($this->runs->removeElement($run)) {
+            // set the owning side to null (unless already changed)
+            if ($run->getTopic() === $this) {
+                $run->setTopic(null);
             }
         }
 
