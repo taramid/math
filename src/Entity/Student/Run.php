@@ -4,6 +4,8 @@ namespace App\Entity\Student;
 
 use App\Entity\Curriculum\Topic;
 use App\Repository\Student\RunRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RunRepository::class)]
@@ -22,6 +24,17 @@ class Run
     #[ORM\ManyToOne(inversedBy: 'runs')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Topic $topic = null;
+
+    /**
+     * @var Collection<int, Answer>
+     */
+    #[ORM\OneToMany(targetEntity: Answer::class, mappedBy: 'run')]
+    private Collection $answers;
+
+    public function __construct()
+    {
+        $this->answers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -48,6 +61,36 @@ class Run
     public function setTopic(?Topic $topic): static
     {
         $this->topic = $topic;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Answer>
+     */
+    public function getAnswers(): Collection
+    {
+        return $this->answers;
+    }
+
+    public function addAnswer(Answer $answer): static
+    {
+        if (!$this->answers->contains($answer)) {
+            $this->answers->add($answer);
+            $answer->setRun($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnswer(Answer $answer): static
+    {
+        if ($this->answers->removeElement($answer)) {
+            // set the owning side to null (unless already changed)
+            if ($answer->getRun() === $this) {
+                $answer->setRun(null);
+            }
+        }
 
         return $this;
     }
