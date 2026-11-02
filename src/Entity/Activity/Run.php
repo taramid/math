@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Entity\Student;
+namespace App\Entity\Activity;
 
 use App\Entity\Curriculum\Topic;
-use App\Repository\Student\RunRepository;
+use App\Repository\Activity\RunRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

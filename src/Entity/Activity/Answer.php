@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity\Student;
+namespace App\Entity\Activity;
 
-use App\Repository\Student\AnswerRepository;
+use App\Repository\Activity\AnswerRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AnswerRepository::class)]

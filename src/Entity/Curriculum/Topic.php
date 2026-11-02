@@ -2,7 +2,7 @@
 
 namespace App\Entity\Curriculum;
 
-use App\Entity\Student\Run;
+use App\Entity\Activity\Run;
 use App\Repository\Curriculum\TopicRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
