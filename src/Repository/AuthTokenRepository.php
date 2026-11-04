@@ -31,13 +31,15 @@ class AuthTokenRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?AuthToken
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findValidByHash(string $hash): ?AuthToken
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.hash = :hash')
+            ->andWhere('a.expiresAt > :now')
+            ->setParameter('hash', $hash)
+            ->setParameter('now', new \DateTimeImmutable())
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }
