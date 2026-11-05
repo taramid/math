@@ -5,6 +5,7 @@ namespace App\Entity\Curriculum;
 use App\Repository\Curriculum\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
@@ -30,6 +31,9 @@ class Question
      */
     #[ORM\OneToMany(targetEntity: Option::class, mappedBy: 'option')]
     private Collection $options;
+
+    #[ORM\Column(type: Types::SMALLFLOAT, nullable: true)]
+    private ?float $difficultyWeight = null;
 
     public function __construct()
     {
@@ -97,6 +101,18 @@ class Question
                 $option->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDifficultyWeight(): ?float
+    {
+        return $this->difficultyWeight ?? 1.0;
+    }
+
+    public function setDifficultyWeight(?float $difficultyWeight): static
+    {
+        $this->difficultyWeight = $difficultyWeight;
 
         return $this;
     }
