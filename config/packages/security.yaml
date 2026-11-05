@@ -8,7 +8,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Student
+                class: App\Identity\Entity\Student
                 property: id
 
     firewalls:
@@ -20,7 +20,7 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticators:
-                - App\Security\CookieAuthenticator
+                - App\Identity\Security\CookieAuthenticator
 
             # Activate different ways to authenticate:
             # https://symfony.com/doc/current/security.html#the-firewall

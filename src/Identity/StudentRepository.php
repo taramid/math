@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace App\Identity;
 
-use App\Entity\Student;
+use App\Identity\Entity\Student;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

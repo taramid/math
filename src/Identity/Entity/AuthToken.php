@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Identity\Entity;
 
-use App\Repository\AuthTokenRepository;
+use App\Identity\AuthTokenRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AuthTokenRepository::class)]

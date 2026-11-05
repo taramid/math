@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Entity\Activity;
+namespace App\Curriculum\Entity;
 
-use App\Repository\Activity\AnswerRepository;
+use App\Curriculum\OptionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AnswerRepository::class)]
-class Answer
+#[ORM\Entity(repositoryClass: OptionRepository::class)]
+class Option
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,9 +19,9 @@ class Answer
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
 
-    #[ORM\ManyToOne(inversedBy: 'answers')]
+    #[ORM\ManyToOne(inversedBy: 'options')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
-    private ?Run $run = null;
+    private ?Question $question = null;
 
     public function __construct()
     {
@@ -50,14 +50,14 @@ class Answer
         return $this->createdAt;
     }
 
-    public function getRun(): ?Run
+    public function getQuestion(): ?Question
     {
-        return $this->run;
+        return $this->question;
     }
 
-    public function setRun(?Run $run): static
+    public function setQuestion(?Question $question): static
     {
-        $this->run = $run;
+        $this->question = $question;
 
         return $this;
     }
