@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity\Curriculum;
+namespace App\Curriculum\Entity;
 
-use App\Repository\Curriculum\QuestionRepository;
+use App\Curriculum\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;

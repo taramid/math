@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository\Curriculum;
+namespace App\Curriculum;
 
-use App\Entity\Curriculum\Topic;
+use App\Curriculum\Entity\Topic;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

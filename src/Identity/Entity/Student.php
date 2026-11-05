@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Entity;
+namespace App\Identity\Entity;
 
-use App\Enum\UserRole;
-use App\Repository\StudentRepository;
+use App\Identity\StudentRepository;
+use App\Identity\UserRole;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

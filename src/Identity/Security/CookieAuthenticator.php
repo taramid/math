@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Security;
+namespace App\Identity\Security;
 
-use App\Entity\AuthToken;
-use App\Entity\Student;
-use App\Repository\AuthTokenRepository;
+use App\Identity\AuthTokenRepository;
+use App\Identity\Entity\AuthToken;
+use App\Identity\Entity\Student;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
