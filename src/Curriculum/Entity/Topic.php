@@ -17,8 +17,14 @@ class Topic
     #[ORM\Column(type: UuidType::NAME)]
     private Uuid $id;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $translationKey = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $title = null;
+
+    #[ORM\Column(length: 14, nullable: true)]
+    private ?string $locale = null;
 
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
@@ -48,6 +54,18 @@ class Topic
         return $this->id;
     }
 
+    public function getTranslationKey(): ?string
+    {
+        return $this->translationKey;
+    }
+
+    public function setTranslationKey(?string $translationKey): static
+    {
+        $this->translationKey = $translationKey;
+
+        return $this;
+    }
+
     public function getTitle(): ?string
     {
         return $this->title;
@@ -56,6 +74,18 @@ class Topic
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(?string $locale): static
+    {
+        $this->locale = $locale;
 
         return $this;
     }
