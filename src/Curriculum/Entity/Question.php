@@ -19,6 +19,9 @@ class Question
     #[ORM\Column(length: 255)]
     private ?string $text = null;
 
+    #[ORM\Column(type: Types::SMALLFLOAT, nullable: true)]
+    private ?float $difficultyWeight = null;
+
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
 
@@ -31,9 +34,6 @@ class Question
      */
     #[ORM\OneToMany(targetEntity: Option::class, mappedBy: 'question')]
     private Collection $options;
-
-    #[ORM\Column(type: Types::SMALLFLOAT, nullable: true)]
-    private ?float $difficultyWeight = null;
 
     public function __construct()
     {
@@ -54,6 +54,18 @@ class Question
     public function setText(string $text): static
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function getDifficultyWeight(): ?float
+    {
+        return $this->difficultyWeight ?? 1.0;
+    }
+
+    public function setDifficultyWeight(?float $difficultyWeight): static
+    {
+        $this->difficultyWeight = $difficultyWeight;
 
         return $this;
     }
@@ -105,15 +117,4 @@ class Question
         return $this;
     }
 
-    public function getDifficultyWeight(): ?float
-    {
-        return $this->difficultyWeight ?? 1.0;
-    }
-
-    public function setDifficultyWeight(?float $difficultyWeight): static
-    {
-        $this->difficultyWeight = $difficultyWeight;
-
-        return $this;
-    }
 }
