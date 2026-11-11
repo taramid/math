@@ -13,6 +13,7 @@ return new PhpCsFixer\Config()
     ->setRules([
         '@Symfony' => true,
         'single_line_empty_body' => true,
+        'no_extra_blank_lines' => false,
     ])
     ->setFinder($finder)
 ;
