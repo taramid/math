@@ -103,28 +103,6 @@ class Topic
         return $this->questions;
     }
 
-    public function addQuestion(Question $question): static
-    {
-        if (!$this->questions->contains($question)) {
-            $this->questions->add($question);
-            $question->setTopic($this);
-        }
-
-        return $this;
-    }
-
-    public function removeQuestion(Question $question): static
-    {
-        if ($this->questions->removeElement($question)) {
-            // set the owning side to null (unless already changed)
-            if ($question->getTopic() === $this) {
-                $question->setTopic(null);
-            }
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Run>
      */

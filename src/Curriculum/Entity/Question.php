@@ -17,17 +17,17 @@ class Question
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $text = null;
+    private string $text;
 
     #[ORM\Column(type: Types::SMALLFLOAT, nullable: true)]
-    private ?float $difficultyWeight = null;
+    private ?float $difficultyWeight;
 
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'questions')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
-    private ?Topic $topic = null;
+    private Topic $topic;
 
     /**
      * @var Collection<int, Option>
@@ -35,8 +35,11 @@ class Question
     #[ORM\OneToMany(targetEntity: Option::class, mappedBy: 'question')]
     private Collection $options;
 
-    public function __construct()
+    public function __construct(Topic $topic, string $text, ?float $difficultyWeight = null)
     {
+        $this->topic = $topic;
+        $this->text = $text;
+        $this->difficultyWeight = $difficultyWeight;
         $this->createdAt = new \DateTimeImmutable();
         $this->options = new ArrayCollection();
     }
@@ -46,7 +49,7 @@ class Question
         return $this->id;
     }
 
-    public function getText(): ?string
+    public function getText(): string
     {
         return $this->text;
     }
@@ -58,7 +61,7 @@ class Question
         return $this;
     }
 
-    public function getDifficultyWeight(): ?float
+    public function getDifficultyWeight(): float
     {
         return $this->difficultyWeight ?? 1.0;
     }
@@ -75,16 +78,9 @@ class Question
         return $this->createdAt;
     }
 
-    public function getTopic(): ?Topic
+    public function getTopic(): Topic
     {
         return $this->topic;
-    }
-
-    public function setTopic(?Topic $topic): static
-    {
-        $this->topic = $topic;
-
-        return $this;
     }
 
     /**
@@ -94,27 +90,4 @@ class Question
     {
         return $this->options;
     }
-
-    public function addOption(Option $option): static
-    {
-        if (!$this->options->contains($option)) {
-            $this->options->add($option);
-            $option->setQuestion($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOption(Option $option): static
-    {
-        if ($this->options->removeElement($option)) {
-            // set the owning side to null (unless already changed)
-            if ($option->getQuestion() === $this) {
-                $option->setQuestion(null);
-            }
-        }
-
-        return $this;
-    }
-
 }
