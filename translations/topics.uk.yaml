@@ -5,3 +5,7 @@ multiplication:
 squares:
     title: Квадрати
     description: Квадрати чисел від 11 до 20.
+
+cubes:
+    title: Куби
+    description: Виходимо у третій вимір.

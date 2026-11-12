@@ -5,3 +5,7 @@ multiplication:
 squares:
     title: Squares
     description: Squares of numbers from 11 to 20.
+
+cubes:
+    title: Cubes
+    description: Entering the third dimension.
