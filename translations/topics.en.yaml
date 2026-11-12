@@ -1,3 +1,7 @@
 multiplication:
     title: Multiplication Table
     description: A classic. Where would we be without it?
+
+squares:
+    title: Squares
+    description: Squares of numbers from 11 to 20.

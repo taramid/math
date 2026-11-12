@@ -1,3 +1,7 @@
 multiplication:
     title: Таблиця множення
     description: Класика. Куди ж без неї?
+
+squares:
+    title: Квадрати
+    description: Квадрати чисел від 11 до 20.
