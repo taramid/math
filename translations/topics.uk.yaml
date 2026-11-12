@@ -13,3 +13,19 @@ squares-30:
 cubes:
     title: Куби
     description: Виходимо у третій вимір.
+
+addition-10:
+    title: Додавання
+    description: Додавання чисел до 10.
+
+addition-20:
+    title: Додавання 20
+    description: Додавання й віднімання до 20.
+
+addition-100:
+    title: Додавання 100
+    description: Додавання й віднімання до 100.
+
+addition-1000:
+    title: Додавання 1000
+    description: Додавання й віднімання до 1000 з трьома операндами.
