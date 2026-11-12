@@ -6,6 +6,10 @@ squares:
     title: Квадрати
     description: Квадрати чисел від 11 до 20.
 
+squares-30:
+    title: Квадрати до 30
+    description: Не кажи нікому що вчиш їх.
+
 cubes:
     title: Куби
     description: Виходимо у третій вимір.

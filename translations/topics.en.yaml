@@ -6,6 +6,10 @@ squares:
     title: Squares
     description: Squares of numbers from 11 to 20.
 
+squares-30:
+    title: Squares to 30
+    description: Your little math secret.
+
 cubes:
     title: Cubes
     description: Entering the third dimension.
