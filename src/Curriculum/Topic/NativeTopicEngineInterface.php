@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag]
 interface NativeTopicEngineInterface extends TopicEngineInterface
 {
-    public static function getTopicId(): string;
+    public static function getNativeTopicId(): string;
 
     public function seed(): void;
 }

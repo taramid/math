@@ -22,7 +22,7 @@ abstract class AbstractNativeTopicEngine implements NativeTopicEngineInterface
     abstract protected function questions(): iterable;
 
 
-    public static function getTopicId(): string
+    public static function getNativeTopicId(): string
     {
         return static::TOPIC_ID;
     }
@@ -40,7 +40,7 @@ abstract class AbstractNativeTopicEngine implements NativeTopicEngineInterface
             throw new \LogicException(static::class.' must define TOPIC_ID and TRANSLATION_KEY.');
         }
 
-        $id = Uuid::fromString(static::getTopicId());
+        $id = Uuid::fromString(static::getNativeTopicId());
 
         if ($this->em->find(Topic::class, $id)) {
             return;
