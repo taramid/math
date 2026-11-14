@@ -1,6 +1,6 @@
 <?php
 
-$finder = (new PhpCsFixer\Finder())
+$finder = new PhpCsFixer\Finder()
     ->in(__DIR__)
     ->exclude('var')
     ->notPath([
@@ -9,9 +9,11 @@ $finder = (new PhpCsFixer\Finder())
     ])
 ;
 
-return (new PhpCsFixer\Config())
+return new PhpCsFixer\Config()
     ->setRules([
         '@Symfony' => true,
+        'single_line_empty_body' => true,
+        'no_extra_blank_lines' => false,
     ])
     ->setFinder($finder)
 ;

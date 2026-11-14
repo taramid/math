@@ -14,17 +14,19 @@ class Option
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $text = null;
+    private string $text;
 
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'options')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
-    private ?Question $question = null;
+    private Question $question;
 
-    public function __construct()
+    public function __construct(Question $question, string $text)
     {
+        $this->question = $question;
+        $this->text = $text;
         $this->createdAt = new \DateTimeImmutable();
     }
 
@@ -33,7 +35,7 @@ class Option
         return $this->id;
     }
 
-    public function getText(): ?string
+    public function getText(): string
     {
         return $this->text;
     }
@@ -50,15 +52,8 @@ class Option
         return $this->createdAt;
     }
 
-    public function getQuestion(): ?Question
+    public function getQuestion(): Question
     {
         return $this->question;
-    }
-
-    public function setQuestion(?Question $question): static
-    {
-        $this->question = $question;
-
-        return $this;
     }
 }

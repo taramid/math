@@ -7,17 +7,24 @@ use App\Curriculum\TopicRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: TopicRepository::class)]
 class Topic
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: UuidType::NAME)]
+    private Uuid $id;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $translationKey = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $title = null;
+
+    #[ORM\Column(length: 14, nullable: true)]
+    private ?string $locale = null;
 
     #[ORM\Column]
     private \DateTimeImmutable $createdAt;
@@ -34,16 +41,29 @@ class Topic
     #[ORM\OneToMany(targetEntity: Run::class, mappedBy: 'topic')]
     private Collection $runs;
 
-    public function __construct()
+    public function __construct(?Uuid $id = null)
     {
+        $this->id = $id ?? Uuid::v7();
         $this->createdAt = new \DateTimeImmutable();
         $this->questions = new ArrayCollection();
         $this->runs = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): Uuid
     {
         return $this->id;
+    }
+
+    public function getTranslationKey(): ?string
+    {
+        return $this->translationKey;
+    }
+
+    public function setTranslationKey(?string $translationKey): static
+    {
+        $this->translationKey = $translationKey;
+
+        return $this;
     }
 
     public function getTitle(): ?string
@@ -54,6 +74,18 @@ class Topic
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(?string $locale): static
+    {
+        $this->locale = $locale;
 
         return $this;
     }
@@ -69,28 +101,6 @@ class Topic
     public function getQuestions(): Collection
     {
         return $this->questions;
-    }
-
-    public function addQuestion(Question $question): static
-    {
-        if (!$this->questions->contains($question)) {
-            $this->questions->add($question);
-            $question->setTopic($this);
-        }
-
-        return $this;
-    }
-
-    public function removeQuestion(Question $question): static
-    {
-        if ($this->questions->removeElement($question)) {
-            // set the owning side to null (unless already changed)
-            if ($question->getTopic() === $this) {
-                $question->setTopic(null);
-            }
-        }
-
-        return $this;
     }
 
     /**

@@ -1,0 +1,31 @@
+multiplication:
+    title: Multiplication Table
+    description: A classic. Where would we be without it?
+
+squares:
+    title: Squares
+    description: Squares of numbers from 11 to 20.
+
+squares-30:
+    title: Squares to 30
+    description: Your little math secret.
+
+cubes:
+    title: Cubes
+    description: Entering the third dimension.
+
+addition-10:
+    title: Addition
+    description: Adding numbers up to 10.
+
+addition-20:
+    title: Addition to 20
+    description: Adding and subtracting up to 20.
+
+addition-100:
+    title: Addition to 100
+    description: Adding and subtracting up to 100.
+
+addition-1000:
+    title: Addition to 1000
+    description: Adding and subtracting up to 1000 with three operands.
