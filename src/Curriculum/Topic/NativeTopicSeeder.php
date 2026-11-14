@@ -14,7 +14,14 @@ final readonly class NativeTopicSeeder implements UpdateTaskInterface
 
     public function update(): void
     {
-        foreach ($this->engines as $engine) {
+        $engines = iterator_to_array($this->engines);
+
+        usort(
+            $engines,
+            static fn (NativeTopicEngineInterface $a, NativeTopicEngineInterface $b) => $a::TOPIC_ID <=> $b::TOPIC_ID
+        );
+
+        foreach ($engines as $engine) {
             $engine->seed();
         }
     }
