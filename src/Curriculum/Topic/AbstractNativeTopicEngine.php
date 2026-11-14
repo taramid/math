@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Curriculum\Topic;
 
+use App\Common\Event\UpdateTaskEvent;
 use App\Curriculum\Entity\Question;
 use App\Curriculum\Entity\Topic;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 
 abstract class AbstractNativeTopicEngine implements NativeTopicEngineInterface
@@ -15,7 +17,10 @@ abstract class AbstractNativeTopicEngine implements NativeTopicEngineInterface
     public const string TOPIC_ID = '';
     public const string TRANSLATION_KEY = '';
 
-    public function __construct(protected readonly EntityManagerInterface $em) {}
+    public function __construct(
+        protected readonly EntityManagerInterface $em,
+        private readonly EventDispatcherInterface $eventDispatcher,
+    ) {}
 
 
     /** @return iterable<QuestionDraft> */
@@ -51,11 +56,18 @@ abstract class AbstractNativeTopicEngine implements NativeTopicEngineInterface
             $topic->setTranslationKey(static::getTranslationKey());
             $this->em->persist($topic);
 
-            foreach ($this->questions() as $q) {
+            $questions = iterator_to_array($this->questions());
+            $count = count($questions);
+
+            foreach ($questions as $q) {
                 $this->em->persist(new Question($topic, $q->text, $q->difficulty));
             }
 
             $this->em->flush();
+
+            $this->eventDispatcher->dispatch(
+                new UpdateTaskEvent(static::class, 0 < $count ? "$count questions" : '')
+            );
         });
     }
 }
