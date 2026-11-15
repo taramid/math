@@ -13,7 +13,7 @@ class CubeEngine extends AbstractNativeTopicEngine
     {
         for ($a = 2; $a <= 9; ++$a) {
 
-            yield new QuestionDraft("$a ^ 3");
+            yield new NativeQuestionDraft("$a ^ 3", $a ** 3);
         }
     }
 }

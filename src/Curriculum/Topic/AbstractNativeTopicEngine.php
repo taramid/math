@@ -23,7 +23,7 @@ abstract class AbstractNativeTopicEngine implements NativeTopicEngineInterface
     ) {}
 
 
-    /** @return iterable<QuestionDraft> */
+    /** @return iterable<NativeQuestionDraft> */
     abstract protected function questions(): iterable;
 
 
