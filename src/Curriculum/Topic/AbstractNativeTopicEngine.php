@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Curriculum\Topic;
 
 use App\Common\Event\UpdateTaskEvent;
+use App\Curriculum\Entity\Option;
 use App\Curriculum\Entity\Question;
 use App\Curriculum\Entity\Topic;
 use Doctrine\ORM\EntityManagerInterface;
@@ -60,7 +61,9 @@ abstract class AbstractNativeTopicEngine implements NativeTopicEngineInterface
             $count = count($questions);
 
             foreach ($questions as $q) {
-                $this->em->persist(new Question($topic, $q->text, $q->difficulty));
+                $question = new Question($topic, $q->text, $q->difficulty);
+                $this->em->persist($question);
+                $this->em->persist(new Option($question, (string) $q->answer, correct: true));
             }
 
             $this->em->flush();
