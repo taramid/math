@@ -13,7 +13,7 @@ class SquareEngine extends AbstractNativeTopicEngine
     {
         for ($a = 11; $a <= 20; ++$a) {
 
-            yield new QuestionDraft("$a ^ 2");
+            yield new NativeQuestionDraft("$a ^ 2", $a ** 2);
         }
     }
 }

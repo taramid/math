@@ -17,16 +17,20 @@ class Option
     private string $text;
 
     #[ORM\Column]
+    private bool $correct;
+
+    #[ORM\Column]
     private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'options')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private Question $question;
 
-    public function __construct(Question $question, string $text)
+    public function __construct(Question $question, string $text, bool $correct = false)
     {
         $this->question = $question;
         $this->text = $text;
+        $this->correct = $correct;
         $this->createdAt = new \DateTimeImmutable();
     }
 
@@ -43,6 +47,18 @@ class Option
     public function setText(string $text): static
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function isCorrect(): bool
+    {
+        return $this->correct;
+    }
+
+    public function setCorrect(bool $correct): static
+    {
+        $this->correct = $correct;
 
         return $this;
     }

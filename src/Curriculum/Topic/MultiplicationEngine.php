@@ -39,7 +39,7 @@ class MultiplicationEngine extends AbstractNativeTopicEngine
                     // https://numdrill.com/blog/hardest-times-tables
                 }
 
-                yield new QuestionDraft("$a * $b", $difficulty);
+                yield new NativeQuestionDraft("$a * $b", $a * $b, $difficulty);
             }
         }
     }
